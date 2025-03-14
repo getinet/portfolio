@@ -10,12 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
 
-    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=6e5aac95cf" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=d7881a01d8" />
 
-    <link rel="apple-touch-icon" href="/assets/images/branding/apple-touch-icon.png?v=6e5aac95cf" />
-    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/images/branding/logo-fav.png?v=6e5aac95cf" />
+    <link rel="apple-touch-icon" href="/assets/images/branding/apple-touch-icon.png?v=d7881a01d8" />
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/images/branding/logo-fav.png?v=d7881a01d8" />
     <meta name="msapplication-TileColor" content="#9C1E22">
-    <meta name="msapplication-TileImage" content="/assets/images/branding/logo-fav.png?v=6e5aac95cf" />
+    <meta name="msapplication-TileImage" content="/assets/images/branding/logo-fav.png?v=d7881a01d8" />
     <meta name="theme-color" content="#9C1E22">
 
     <link rel="icon" href="../content/images/size/w256h256/2025/02/logo-fav-4475a3437275594f.png" type="image/png">
@@ -88,8 +88,8 @@ I’m a UX/UI and Visual Designer with a strong background in leading design and
     
     
     <link href="../webmentions/receive/" rel="webmention">
-    <script defer src="/public/cards.min.js?v=6e5aac95cf"></script><style>:root {--ghost-accent-color: #9a0b17;}</style>
-    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=6e5aac95cf">
+    <script defer src="/public/cards.min.js?v=d7881a01d8"></script><style>:root {--ghost-accent-color: #9a0b17;}</style>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=d7881a01d8">
     <link rel="preconnect" href="https://fonts.bunny.net"><link rel="stylesheet" href="https://fonts.bunny.net/css?family=nunito:400,600,700"><style>:root {--gh-font-heading: Nunito;--gh-font-body: Nunito;}</style>
 
 </head>
@@ -345,9 +345,9 @@ I’m a UX/UI and Visual Designer with a strong background in leading design and
         </div>
     </div>
 </div>
-<script src="/assets/built/main.min.js?v=6e5aac95cf"></script>
+<script src="/assets/built/main.min.js?v=d7881a01d8"></script>
 <script async src="https://tally.so/widgets/embed.js"></script>
-<script type="text/javascript" src="/assets/js/vanilla-tilt.js?v=6e5aac95cf"></script>
+<script type="text/javascript" src="/assets/js/vanilla-tilt.js?v=d7881a01d8"></script>
 
 
 
@@ -429,35 +429,53 @@ I’m a UX/UI and Visual Designer with a strong background in leading design and
 
     </script>
 
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const fixedDivs = document.querySelectorAll(".fixed"); // Select all divs with class "fixed"
 
-    <script>
-// Ensure the script runs only after the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", function () {
-    const fixedDiv = document.querySelector(".fixed"); // Select the div with the class "fixed"
-    const image = fixedDiv ? fixedDiv.querySelector(".kg-image") : null; // Select the .kg-image within the fixed div
+      fixedDivs.forEach(fixedDiv => {
+          const images = fixedDiv.querySelectorAll(".kg-image"); // Select all .kg-image inside each .fixed div
 
-    if (image) {
-        // Listen for scroll events to adjust image opacity
-        window.addEventListener("scroll", function () {
-            let scrollTop = window.scrollY || document.documentElement.scrollTop;
-            let viewportHeight = window.innerHeight;
-            let targetHeight = 50; // 50vh as the target height for opacity calculation
+          // Store the initial height of the fixed div
+          fixedDiv.dataset.initialHeight = fixedDiv.offsetHeight;
+          fixedDiv.style.width = fixedDiv.offsetWidth + "px"; // Lock width
 
-            // Gradually decrease opacity as the user scrolls down
-            // Opacity decreases proportionally to the scroll position, fading out completely at 50vh
-            let opacity = Math.max(1 - scrollTop / (viewportHeight * (targetHeight / 100)), 0); // Adjust based on 50vh
-            image.style.opacity = opacity;
+          images.forEach(image => {
+              // Store initial height and lock width
+              image.dataset.initialHeight = image.offsetHeight;
+              image.style.width = image.offsetWidth + "px";
 
-            // Hide the image completely once opacity reaches zero
-            if (opacity === 0) {
-                image.style.display = "none";
-            } else {
-                image.style.display = "block";
-            }
-        });
-    }
-});
+              window.addEventListener("scroll", function () {
+                  let scrollTop = window.scrollY || document.documentElement.scrollTop;
+                  let viewportHeight = window.innerHeight;
+                  let targetHeight = 75; // 75vh as the target height for transformations
 
-    </script>
+                  let opacity = Math.max(1 - scrollTop / (viewportHeight * (targetHeight / 100)), 0);
+                  
+                  // Calculate new heights for image and fixed div
+                  let initialImageHeight = parseFloat(image.dataset.initialHeight);
+                  let newImageHeight = Math.max(initialImageHeight * opacity, 10);
+
+                  let initialFixedHeight = parseFloat(fixedDiv.dataset.initialHeight);
+                  let newFixedHeight = Math.max(initialFixedHeight * opacity, 10);
+
+                  // Apply styles
+                  image.style.opacity = opacity;
+                  image.style.height = newImageHeight + "px";
+
+                  fixedDiv.style.opacity = opacity;
+                  fixedDiv.style.height = newFixedHeight + "px";
+
+                  // Hide the image and div completely once opacity reaches zero
+                  let displayState = opacity === 0 ? "none" : "block";
+                  image.style.display = displayState;
+                  fixedDiv.style.display = displayState;
+              });
+          });
+      });
+  });
+  </script>
+
+
 </body>
 </html>
