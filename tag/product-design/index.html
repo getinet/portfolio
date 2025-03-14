@@ -76,6 +76,7 @@
 </head>
 <body class="tag-template tag-product-design gh-font-heading-nunito gh-font-body-nunito is-head-left-logo">
 <div class="site-wrapper">
+<div id="scrollPosition">Scroll: 0px</div>
     <header id="gh-head" class="gh-head gh-outer animated-bg">
         <div class="gh-head-inner gh-inner">
             <div class="gh-head-brand">
@@ -247,12 +248,25 @@
 
 
     <script>
-        const scrollPosition = document.getElementById("scrollPosition");
+document.addEventListener("DOMContentLoaded", function () {
+    const scrollPosition = document.getElementById("scrollPosition");
 
-        window.addEventListener("scroll", function () {
-            scrollPosition.textContent = `Scroll: ${window.scrollY}px`;
-        });
-    </script>
+    // Track scroll position
+    window.addEventListener("scroll", function () {
+        updateDisplay();
+    });
+
+    // Track cursor position
+    window.addEventListener("mousemove", function (event) {
+        updateDisplay(event.clientX, event.clientY);
+    });
+
+    function updateDisplay(mouseX = 0, mouseY = 0) {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+        scrollPosition.textContent = `Scroll: ${scrollY}px | Cursor: (${mouseX}px, ${mouseY}px)`;
+    }
+});
+</script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
