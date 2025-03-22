@@ -135,6 +135,7 @@ I started by exploring modern art movements, focusing on Bauhaus, Constructivism
     <li class="nav-contact"><a href="#tally-open=31pEeg&tally-layout=modal&tally-overlay=1&tally-emoji-text=%F0%9F%91%8B&tally-emoji-animation=tada&tally-auto-close=5000">Contact</a></li>
 </ul>
 
+          <!-- Floating Dark Mode Toggle Button with SVG Icons -->
           <div class="container">
               <select size="2" id="theme-selector">
                   <option value="light" selected>🌕</option>
@@ -174,10 +175,14 @@ I started by exploring modern art movements, focusing on Bauhaus, Constructivism
     </div>
 
 
+
+
 </article>
 
 
-<div class="related-wrapper gh-outer">
+
+
+<section class="related-wrapper gh-outer">
         <section class="related-posts gh-inner">
             <h3 class="related-title">
                 <span class="text">You might also like…</span>
@@ -400,7 +405,8 @@ Samsung Advanced Biotechnology
 </a>
 </article>            </div>
         </section>
-</div>
+</section>
+
 
 
   </main>
@@ -583,5 +589,22 @@ Samsung Advanced Biotechnology
   loadTheme();
 
   </script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const container = document.querySelector(".post-feed");
+            const posts = Array.from(document.querySelectorAll(".post-card"));
+            
+            if (container && posts.length > 0) {
+                for (let i = posts.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [posts[i], posts[j]] = [posts[j], posts[i]];
+                }
+                
+                posts.forEach(post => container.appendChild(post));
+            }
+        });
+    </script>
 </body>
 </html>
