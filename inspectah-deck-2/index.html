@@ -162,12 +162,16 @@
     <div class="post-content-body gh-content gh-canvas animate__animated animate__fadeIn animate__delay-1s">
         
 <aside class="gh-post-upgrade-cta">
-    <div class="gh-post-upgrade-cta-content" style="background-color: #9a0b17">
-            <h2>This post is for subscribers only</h2>
-            <a class="gh-btn" data-portal="signup" href="#/portal/signup" style="color:#9a0b17">Subscribe now</a>
-            <p><small>Already have an account? <a data-portal="signin" href="#/portal/signin">Sign in</a></small></p>
+    <div class="gh-post-upgrade-cta-content">
+        <div class="gh-portal-logged-out-form-container">
+          <input type="password" id="password" name="password" placeholder="Shh... it's a secret" title="No peeking! 😉" class="gh-portal-input animate__animated" autocomplete="off" autocorrect="off" autocapitalize="off">
+
+
+
+
     </div>
 </aside>
+
 
     </div>
 
@@ -643,6 +647,29 @@
 (function(){
     socializer( '.socializer' );
 }());
+</script>
+
+
+
+<script>
+  const passwordInput = document.getElementById("password");
+
+  passwordInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      const correctPassword = "secret123"; // Replace with real logic
+      if (passwordInput.value !== correctPassword) {
+        passwordInput.classList.add("animate__swing");
+
+        // Remove the class after the animation
+        setTimeout(() => {
+          passwordInput.classList.remove("animate__swing");
+        }, 2000);
+      } else {
+        // Do something when the password is correct
+        alert("You have been hacked. It's all over.");
+      }
+    }
+  });
 </script>
 </body>
 </html>

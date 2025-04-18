@@ -653,5 +653,28 @@ Samsung Advanced Biotechnology
     socializer( '.socializer' );
 }());
 </script>
+
+
+
+<script>
+  const passwordInput = document.getElementById("password");
+
+  passwordInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      const correctPassword = "secret123"; // Replace with real logic
+      if (passwordInput.value !== correctPassword) {
+        passwordInput.classList.add("animate__swing");
+
+        // Remove the class after the animation
+        setTimeout(() => {
+          passwordInput.classList.remove("animate__swing");
+        }, 2000);
+      } else {
+        // Do something when the password is correct
+        alert("You have been hacked. It's all over.");
+      }
+    }
+  });
+</script>
 </body>
 </html>
