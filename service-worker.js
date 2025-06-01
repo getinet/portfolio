@@ -2,10 +2,12 @@ const CACHE_NAME = 'getinet-portfolio-cache-v1';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/styles.css',
-  '/app.js',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png'
+  '/assets/built/screen.css',
+  '/public/cards.min',
+  '/assets/built/main.min.js',
+  '/public/cards.min.js',
+  '/assets/images/branding/icon-192.png',
+  '/assets/images/branding/icon-512.png'
 ];
 
 self.addEventListener('install', event => {
