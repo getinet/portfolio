@@ -709,5 +709,14 @@ The Fillmore has a storied history of hosting unforgettable performances, and Sa
     }
   });
 </script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js');
+    });
+  }
+</script>
+
 </body>
 </html>

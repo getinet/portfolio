@@ -553,5 +553,14 @@ I’m a UX/UI and Visual Designer with a strong background in leading design and
     }
   });
 </script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js');
+    });
+  }
+</script>
+
 </body>
 </html>

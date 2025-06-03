@@ -617,5 +617,14 @@ Flite Design Studio HTML5 was a pioneering web-based design tool that
     }
   });
 </script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js');
+    });
+  }
+</script>
+
 </body>
 </html>

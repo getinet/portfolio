@@ -711,5 +711,14 @@ I played with interwoven radial lines to create a starburst-like structure, wher
     }
   });
 </script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js');
+    });
+  }
+</script>
+
 </body>
 </html>

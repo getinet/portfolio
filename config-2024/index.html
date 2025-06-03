@@ -729,5 +729,14 @@ This one hit home. It was a refreshing reminder that design systems aren’t">
     }
   });
 </script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js');
+    });
+  }
+</script>
+
 </body>
 </html>

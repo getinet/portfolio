@@ -710,5 +710,14 @@ As a long-time fan of Kid Koala (Eric San), being part of the Australian tour po
     }
   });
 </script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js');
+    });
+  }
+</script>
+
 </body>
 </html>
